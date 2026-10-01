@@ -14,7 +14,7 @@ const __dirname = dirname(__filename);
 const app = express();
 
 // Needed for security headers! Do not delete!
-// app.use(helmet());
+app.use(helmet());
 
 const PORT = process.env.PORT || 3001;
  
@@ -27,7 +27,7 @@ app.use('/api/dreams', dreamsRouter);
 
 // Initialize database then start server
 initDatabase().then(() => {
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }).catch(error => {
